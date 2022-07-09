@@ -19,18 +19,18 @@ source "$(pwd)/lib-sh/lib.sh"
 init() {
 
     if [[ "$RPM" -eq "1" ]]; then
-        Info "$ON_CHECK" "Run CentOS installer..."
-        echo -e "[${GREEN}✓${NC}] Install CentOS packages"
+        Info "$ON_CHECK" "Run CentOS distro detected..."
+        echo -e "[${GREEN}✓${NC}] Hello form lib-sh!"
     fi
 
     if [[ "$RPM" -eq "2" ]]; then
-        Info "$ON_CHECK" "Run Fedora installer..."
-        echo -e "[${GREEN}✓${NC}] Install Fedora packages"
+        Info "$ON_CHECK" "Run Fedora distro detected..."
+        echo -e "[${GREEN}✓${NC}] Hello form lib-sh!"
     fi
 
     if [[ "$DEB" -eq "1" ]]; then
-        Info "$ON_CHECK" "Run Debian installer..."
-        echo -e "[${GREEN}✓${NC}] Install Debian packages"
+        Info "$ON_CHECK" "Debian-based distro detected..."
+        echo -e "[${GREEN}✓${NC}] Hello form lib-sh!"
     fi
 }
 
