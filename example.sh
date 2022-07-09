@@ -20,9 +20,10 @@ source "$(pwd)/lib-sh/lib.sh"
 
 _check() {
 
-    echo -e "[${GREEN}✓${NC}] Example systemd units checking"
     space
-    if service_exists "NetworkManager.service"; then
+    echo -e "[${GREEN}✓${NC}] Example systemd units checking"
+    
+    if chk_SvcExist "NetworkManager.service"; then
         Info "$ON_CHECK" "NetworkManager service already exists."
         chk_SvsStatus "NetworkManager.service"
     fi
