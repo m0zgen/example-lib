@@ -10,6 +10,7 @@ cd $SCRIPT_PATH
 
 # Libs / Configs
 # ---------------------------------------------------\
+git submodule update --init --recursive
 source "$(pwd)/lib-sh/lib.sh"
 # config="$(pwd)/config/config.json"
 
