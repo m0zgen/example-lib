@@ -13,7 +13,30 @@ cd $SCRIPT_PATH
 source "$(pwd)/lib-sh/lib.sh"
 # config="$(pwd)/config/config.json"
 
+# Functions
+# ---------------------------------------------------\
+
+init() {
+
+    if [[ "$RPM" -eq "1" ]]; then
+        Info "$ON_CHECK" "Run CentOS installer..."
+        echo -e "[${GREEN}✓${NC}] Install CentOS packages"
+    fi
+
+    if [[ "$RPM" -eq "2" ]]; then
+        Info "$ON_CHECK" "Run Fedora installer..."
+        echo -e "[${GREEN}✓${NC}] Install Fedora packages"
+    fi
+
+    if [[ "$DEB" -eq "1" ]]; then
+        Info "$ON_CHECK" "Run Debian installer..."
+        echo -e "[${GREEN}✓${NC}] Install Debian packages"
+    fi
+}
 
 # Checks
 # ---------------------------------------------------\
 isRoot
+checkDistro
+
+init
