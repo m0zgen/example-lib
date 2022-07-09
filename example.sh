@@ -10,7 +10,7 @@ cd $SCRIPT_PATH
 
 # Libs / Configs
 # ---------------------------------------------------\
-source "$(pwd)/lib/lib.sh"
+source "$(pwd)/lib-sh/lib.sh"
 # config="$(pwd)/config/config.json"
 
 
