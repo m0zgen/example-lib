@@ -10,7 +10,8 @@ cd $SCRIPT_PATH
 
 # Libs / Configs
 # ---------------------------------------------------\
-git submodule update --init --recursive
+# git submodule update --init --recursive
+git submodule update --recursive --remote --init
 source "$(pwd)/lib-sh/lib.sh"
 # config="$(pwd)/config/config.json"
 
@@ -42,6 +43,7 @@ _check() {
 
     Splash
     echo -e "[${GREEN}✓${NC}] Example checking folders and files exists"
+
     if file_exist "/etc"; then
         Info "$ON_CHECK" "/etc catalog already exists."
     fi
