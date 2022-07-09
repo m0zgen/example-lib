@@ -42,7 +42,7 @@ _check() {
 
     Splash
     echo -e "[${GREEN}✓${NC}] Example checking folders and files exists"
-    if
+    if file_exist "/etc"; then
         Info "$ON_CHECK" "/etc catalog already exists."
     fi
 
