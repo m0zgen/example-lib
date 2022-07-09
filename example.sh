@@ -20,32 +20,34 @@ source "$(pwd)/lib-sh/lib.sh"
 
 _check() {
 
+    # space
+    # echo -e "[${GREEN}✓${NC}] Example systemd units checking"
+
+    # if chk_SvcExist "NetworkManager.service"; then
+    #     Info "$ON_CHECK" "NetworkManager service already exists."
+    #     chk_SvsStatus "NetworkManager.service"
+    # fi
+
+    # if service_exists "firewalld.service"; then
+    #     Info "$ON_CHECK" "Firewall service already exists."
+    # else
+    #     Info "$ON_CHECK" "Firewall service does mot exists."
+    # fi
+
     space
-    echo -e "[${GREEN}✓${NC}] Example systemd units checking"
-    
-    if chk_SvcExist "NetworkManager.service"; then
-        Info "$ON_CHECK" "NetworkManager service already exists."
-        chk_SvsStatus "NetworkManager.service"
-    fi
-
-    if service_exists "firewalld.service"; then
-        Info "$ON_CHECK" "Firewall service already exists."
-    else
-        Info "$ON_CHECK" "Firewall service does mot exists."
-    fi
-
-    Splash
     echo -e "[${GREEN}✓${NC}] Example custom messages"
     space
+
     Info "$ON_CHECK" "Information messages / Notifications"
-    Warn "WARN" "Warning messages / Notifications"
-    Success "OK" "Success messages / Notifications"
-    Error "FAIL" "Error messages / Notifications"
+    Warn "$ON_CHECK" "Warning messages / Notifications"
+    Success "$ON_CHECK" "Success messages / Notifications"
+    Error "$ON_CHECK" "Error messages / Notifications"
 
-    Splash
+    space
     echo -e "[${GREEN}✓${NC}] Example checking folders and files exists"
+    space
 
-    if file_exist "/etc"; then
+    if dir_exist "/etc"; then
         Info "$ON_CHECK" "/etc catalog already exists."
     fi
 
@@ -61,28 +63,39 @@ _check() {
 
 init() {
 
+    space
     if [[ "$RPM" -eq "1" ]]; then
-        Info "$ON_CHECK" "Example message: Run CentOS distro detected..."
         echo -e "[${GREEN}✓${NC}] Hello form lib-sh!"
+        Info "$ON_CHECK" "Example message: Run CentOS distro detected..."
         _check
     elif [[ "$RPM" -eq "2" ]]; then
-        Info "$ON_CHECK" "Example message: Run Fedora distro detected..."
         echo -e "[${GREEN}✓${NC}] Hello form lib-sh!"
+        Info "$ON_CHECK" "Example message: Run Fedora distro detected..."
         _check
     elif [[ "$DEB" -eq "1" ]]; then
-        Info "$ON_CHECK" "Example message: Debian-based distro detected..."
         echo -e "[${GREEN}✓${NC}] Hello form lib-sh!"
+        Info "$ON_CHECK" "Example message: Debian-based distro detected..."
+        _check
+    elif [[ "$OS" -eq "osx" ]]; then
+        echo -e "[${GREEN}✓${NC}] Hello form lib-sh!"
+        Info "$ON_CHECK" "Example message: macOS detected..."
         _check
     else
-        Info "$ON_FAIL" "Example message: Distro does not detected..."
         echo -e "[${RED}✓${NC}] Hello form lib-sh!"
+        Info "$ON_FAIL" "Distro does not detected..."
         _exit
     fi
 }
 
 # Checks
 # ---------------------------------------------------\
-isRoot
+# isRoot
+
+get_distro
 checkDistro
 
 init
+
+
+
+
