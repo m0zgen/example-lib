@@ -17,21 +17,63 @@ source "$(pwd)/lib-sh/lib.sh"
 # Functions
 # ---------------------------------------------------\
 
+_check() {
+
+    echo -e "[${GREEN}✓${NC}] Example systemd units checking"
+    space
+    if service_exists "NetworkManager.service"; then
+        Info "$ON_CHECK" "NetworkManager service already exists."
+        chk_SvsStatus "NetworkManager.service"
+    fi
+
+    if service_exists "firewalld.service"; then
+        Info "$ON_CHECK" "Firewall service already exists."
+    else
+        Info "$ON_CHECK" "Firewall service does mot exists."
+    fi
+
+    Splash
+    echo -e "[${GREEN}✓${NC}] Example custom messages"
+    space
+    Info "$ON_CHECK" "Information messages / Notifications"
+    Warn "WARN" "Warning messages / Notifications"
+    Success "OK" "Success messages / Notifications"
+    Error "FAIL" "Error messages / Notifications"
+
+    Splash
+    echo -e "[${GREEN}✓${NC}] Example checking folders and files exists"
+    if
+        Info "$ON_CHECK" "/etc catalog already exists."
+    fi
+
+    if file_exist "/etc/hosts"; then
+        Info "$ON_CHECK" "/etc/hosts file already exists."
+    fi
+
+    if dir_or_file_exist "/etc/init"; then
+        Info "$ON_CHECK" "/etc/init file already exists."
+    fi
+
+}
+
 init() {
 
     if [[ "$RPM" -eq "1" ]]; then
-        Info "$ON_CHECK" "Run CentOS distro detected..."
+        Info "$ON_CHECK" "Example message: Run CentOS distro detected..."
         echo -e "[${GREEN}✓${NC}] Hello form lib-sh!"
-    fi
-
-    if [[ "$RPM" -eq "2" ]]; then
-        Info "$ON_CHECK" "Run Fedora distro detected..."
+        _check
+    elif [[ "$RPM" -eq "2" ]]; then
+        Info "$ON_CHECK" "Example message: Run Fedora distro detected..."
         echo -e "[${GREEN}✓${NC}] Hello form lib-sh!"
-    fi
-
-    if [[ "$DEB" -eq "1" ]]; then
-        Info "$ON_CHECK" "Debian-based distro detected..."
+        _check
+    elif [[ "$DEB" -eq "1" ]]; then
+        Info "$ON_CHECK" "Example message: Debian-based distro detected..."
         echo -e "[${GREEN}✓${NC}] Hello form lib-sh!"
+        _check
+    else
+        Info "$ON_FAIL" "Example message: Distro does not detected..."
+        echo -e "[${RED}✓${NC}] Hello form lib-sh!"
+        _exit
     fi
 }
 
